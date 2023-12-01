@@ -48,28 +48,46 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Choose Images to upload',
-            ),
-            const ImagePicker(),
-            const Text('Go to Users Page'),
-            FloatingActionButton(
-              onPressed: () async {
-                await Navigator.pushNamed(context, '/user-lists');
-              },
-              child: const Icon(Icons.verified_user_rounded),
-            )
-          ],
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: Text(widget.title),
         ),
-      ),
-    );
+        body: Container(
+          margin: const EdgeInsets.only(top: 10.0, left: 10.0, right: 10.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                margin: const EdgeInsets.only(top: 10.0, left: 10.0),
+                child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Choose Images to upload',
+                        style: TextStyle(color: Colors.black87, fontSize: 18),
+                      ),
+                      ImagePicker(),
+                    ]),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 10.0, left: 10.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      const Text(
+                        'Go to Users Page',
+                        style: TextStyle(color: Colors.black87, fontSize: 18),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await Navigator.pushNamed(context, '/user-lists');
+                        },
+                        child: const Icon(Icons.arrow_forward_rounded),
+                      )
+                    ]),
+              )
+            ],
+          ),
+        ));
   }
 }

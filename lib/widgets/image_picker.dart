@@ -12,17 +12,13 @@ class ImagePicker extends StatefulWidget {
 class _ImagePickerState extends State<ImagePicker> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        ElevatedButton(
-          onPressed: () {
-            BlocProvider.of<BlocImagePicker>(context)
-                .add(ImageUploaderEvent.upload);
-            Navigator.pushNamed(context, '/image-lists');
-          },
-          child: Icon(Icons.add),
-        )
-      ],
+    return ElevatedButton(
+      onPressed: () {
+        BlocProvider.of<BlocImagePicker>(context)
+            .add(ImageUploaderEvent.upload);
+        Navigator.pushNamed(context, '/image-lists');
+      },
+      child: Icon(Icons.image),
     );
   }
 }
