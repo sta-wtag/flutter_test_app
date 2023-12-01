@@ -49,7 +49,7 @@ class UsersList extends StatelessWidget {
                 } else if (state is UserErrorState) {
                   return Text(state.error);
                 } else {
-                  return Text('unknown error');
+                  return const Text('unknown error');
                 }
               }),
             )));
