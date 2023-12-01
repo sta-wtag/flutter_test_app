@@ -20,16 +20,14 @@ class MyApp extends StatelessWidget {
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            colorScheme:
+                ColorScheme.fromSeed(seedColor: Colors.deepPurple.shade900),
             useMaterial3: true,
           ),
-          // home: const MyHomePage(title: 'Texas Real State Solution'),
           initialRoute: '/',
           routes: {
-            // When navigating to the "/" route, build the FirstScreen widget.
             '/': (context) =>
                 const MyHomePage(title: 'Texas Real State Solution'),
-            // When navigating to the "/second" route, build the SecondScreen widget.
             '/image-lists': (context) => const ImageLists(),
             '/user-lists': (context) => const UsersList(),
           },
@@ -58,16 +56,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'Choose Images to upload',
             ),
-            ImagePicker(),
-            Text('Go to Users Page'),
+            const ImagePicker(),
+            const Text('Go to Users Page'),
             FloatingActionButton(
               onPressed: () async {
                 await Navigator.pushNamed(context, '/user-lists');
               },
-              child: Icon(Icons.ac_unit),
+              child: const Icon(Icons.verified_user_rounded),
             )
           ],
         ),

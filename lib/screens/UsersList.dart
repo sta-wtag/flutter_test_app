@@ -13,7 +13,7 @@ class UsersList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('ImageLists'),
+          title: const Text('Users'),
         ),
         body: RepositoryProvider(
             create: (context) => UserRepository(),
@@ -34,8 +34,15 @@ class UsersList extends StatelessWidget {
                     itemCount: users.length,
                     itemBuilder: (context, index) {
                       return ListTile(
+                        trailing: Image.network(
+                          users[index].avatar,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        ),
                         title: Text(users[index].first_name),
                         subtitle: Text(users[index].last_name),
+                        dense: true,
                       );
                     },
                   );
