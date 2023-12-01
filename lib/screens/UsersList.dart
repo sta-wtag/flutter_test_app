@@ -42,7 +42,7 @@ class UsersList extends StatelessWidget {
                 } else if (state is UserErrorState) {
                   return Text(state.error);
                 } else {
-                  return Text('Bullshit');
+                  return Text('unknown error');
                 }
               }),
             )));
