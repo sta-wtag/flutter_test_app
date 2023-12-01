@@ -13,8 +13,8 @@ class ImageLists extends StatelessWidget {
         appBar: AppBar(
           title: const Text('ImageLists'),
         ),
-        body: Center(
-          child: BlocBuilder<BlocImagePicker, ImagePickerState>(
+        body: Column(children: <Widget>[
+          BlocBuilder<BlocImagePicker, ImagePickerState>(
               builder: (context, state) {
             return ListView.builder(
               shrinkWrap: true,
@@ -25,6 +25,12 @@ class ImageLists extends StatelessWidget {
               },
             );
           }),
-        ));
+          ElevatedButton(
+              onPressed: () {
+                BlocProvider.of<BlocImagePicker>(context)
+                    .add(ImageUploaderEvent.upload);
+              },
+              child: Icon(Icons.upload))
+        ]));
   }
 }

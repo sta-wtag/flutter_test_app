@@ -2,8 +2,9 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'image_picker_state.dart';
+import "../repos/repositories.dart";
 
-enum ImageUploaderEvent { upload }
+enum ImageUploaderEvent { selectImages, upload }
 
 class BlocImagePicker extends Bloc<ImageUploaderEvent, ImagePickerState> {
   BlocImagePicker() : super(ImagePickerState(images: []));
@@ -11,7 +12,7 @@ class BlocImagePicker extends Bloc<ImageUploaderEvent, ImagePickerState> {
   @override
   Stream<ImagePickerState> mapEventToState(ImageUploaderEvent event) async* {
     switch (event) {
-      case ImageUploaderEvent.upload:
+      case ImageUploaderEvent.selectImages:
         final picker = ImagePicker();
         final pickedFiles = await picker.pickMultiImage();
         if (pickedFiles.length > 0) {
@@ -21,6 +22,11 @@ class BlocImagePicker extends Bloc<ImageUploaderEvent, ImagePickerState> {
 
           yield ImagePickerState(images: state.images);
         }
+        break;
+
+      case ImageUploaderEvent.upload:
+        UserRepository _userRepo = UserRepository();
+        _userRepo.uploadProductImage(state.images.first);
         break;
     }
   }

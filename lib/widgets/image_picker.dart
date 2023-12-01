@@ -15,7 +15,7 @@ class _ImagePickerState extends State<ImagePicker> {
     return ElevatedButton(
       onPressed: () {
         BlocProvider.of<BlocImagePicker>(context)
-            .add(ImageUploaderEvent.upload);
+            .add(ImageUploaderEvent.selectImages);
         Navigator.pushNamed(context, '/image-lists');
       },
       child: Icon(Icons.image),
