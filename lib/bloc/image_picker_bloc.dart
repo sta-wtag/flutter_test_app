@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:texas_real_state/models/product_model.dart';
 import 'image_picker_state.dart';
 import "../repos/repositories.dart";
 
@@ -26,7 +27,9 @@ class BlocImagePicker extends Bloc<ImageUploaderEvent, ImagePickerState> {
 
       case ImageUploaderEvent.upload:
         UserRepository _userRepo = UserRepository();
-        _userRepo.uploadProductImage(state.images.first);
+        ProductModel product =
+            await _userRepo.uploadProductImage(state.images.first);
+        yield ImagePickerState(images: [], product: product);
         break;
     }
   }
