@@ -5,7 +5,6 @@ import 'image_picker_bloc.dart';
 
 class ImagePickerState {
   List images;
-  ProductModel? product = null;
-
-  ImagePickerState({required this.images, this.product});
+  ProductModel? uploadedProduct = null;
+  ImagePickerState({required this.images, this.uploadedProduct});
 }

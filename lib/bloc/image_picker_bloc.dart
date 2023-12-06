@@ -8,8 +8,8 @@ import "../repos/repositories.dart";
 enum ImageUploaderEvent { selectImages, upload }
 
 class BlocImagePicker extends Bloc<ImageUploaderEvent, ImagePickerState> {
-  BlocImagePicker() : super(ImagePickerState(images: []));
-
+  BlocImagePicker()
+      : super(ImagePickerState(images: [], uploadedProduct: null));
   @override
   Stream<ImagePickerState> mapEventToState(ImageUploaderEvent event) async* {
     switch (event) {
@@ -21,7 +21,7 @@ class BlocImagePicker extends Bloc<ImageUploaderEvent, ImagePickerState> {
             state.images.add(File(file.path));
           });
 
-          yield ImagePickerState(images: state.images);
+          yield ImagePickerState(images: state.images, uploadedProduct: null);
         }
         break;
 
@@ -29,7 +29,9 @@ class BlocImagePicker extends Bloc<ImageUploaderEvent, ImagePickerState> {
         UserRepository _userRepo = UserRepository();
         ProductModel product =
             await _userRepo.uploadProductImage(state.images.first);
-        yield ImagePickerState(images: [], product: product);
+        state.uploadedProduct = product;
+        yield ImagePickerState(
+            images: [], uploadedProduct: state.uploadedProduct);
         break;
     }
   }

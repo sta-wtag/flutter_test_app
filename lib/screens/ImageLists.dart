@@ -13,24 +13,40 @@ class ImageLists extends StatelessWidget {
         appBar: AppBar(
           title: const Text('ImageLists'),
         ),
-        body: Column(children: <Widget>[
-          BlocBuilder<BlocImagePicker, ImagePickerState>(
+        body: Card(
+          child: BlocBuilder<BlocImagePicker, ImagePickerState>(
               builder: (context, state) {
-            return ListView.builder(
-              shrinkWrap: true,
-              itemCount: state.images.length,
-              itemBuilder: (context, index) {
-                return ImageViewerListTile(
-                    imageTitle: 'test', imagePath: state.images[index]);
-              },
-            );
+            if (state.images.length > 0) {
+              return Column(
+                children: <Widget>[
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: state.images.length,
+                    itemBuilder: (context, index) {
+                      return ImageViewerListTile(
+                          imageTitle: 'test', imagePath: state.images[index]);
+                    },
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        BlocProvider.of<BlocImagePicker>(context)
+                            .add(ImageUploaderEvent.upload);
+                      },
+                      child: Icon(Icons.upload))
+                ],
+              );
+            } else if (state.uploadedProduct != null) {
+              return ListTile(
+                title: Text(state.uploadedProduct?.title ?? 'test'),
+                subtitle: Image.network(
+                  state.uploadedProduct?.image ?? '',
+                  width: 100,
+                  height: 100,
+                ),
+              );
+            }
+            return Text('No Data');
           }),
-          ElevatedButton(
-              onPressed: () {
-                BlocProvider.of<BlocImagePicker>(context)
-                    .add(ImageUploaderEvent.upload);
-              },
-              child: Icon(Icons.upload))
-        ]));
+        ));
   }
 }

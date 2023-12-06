@@ -24,6 +24,9 @@ class UserRepository {
     var request = MultipartRequest('POST', Uri.parse(endPoint2));
 
     request.fields['title'] = 'test';
+    request.fields['price'] = '203.99';
+    request.fields['description'] = 'test';
+    request.fields['category'] = 'test';
 
     var multipart = new MultipartFile('image', stream, length);
 
@@ -33,7 +36,7 @@ class UserRepository {
 
     if (response.statusCode == 200) {
       var resSTR = await response.stream.bytesToString();
-
+      print(jsonDecode(resSTR)['id']);
       return getProduct(jsonDecode(resSTR)['id']);
     } else {
       throw Exception(response.reasonPhrase);
@@ -41,15 +44,15 @@ class UserRepository {
   }
 
   Future<ProductModel> getProduct(productID) async {
-    var endPoint3 = endPoint2 + '/1';
+    var endPoint3 = endPoint2 + '/20';
+    print(endPoint3);
     Response response = await get(Uri.parse(endPoint3));
-    print(response.body);
     if (response.statusCode == 200) {
-      final result = jsonDecode(response.body);
+      final result = ProductModel.fromJson(jsonDecode(response.body));
 
-      print(result);
+      print(result.title);
 
-      return ProductModel.fromJson(result);
+      return result;
     } else {
       throw Exception(response.reasonPhrase);
     }
