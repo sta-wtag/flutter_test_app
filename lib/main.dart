@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:texas_real_state/screens/UsersList.dart';
 import 'widgets/image_picker.dart';
 import 'screens/ImageLists.dart';
+import 'screens/PopularMovieList.dart';
 import '../bloc/image_picker_bloc.dart';
 
 void main() {
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
                 const MyHomePage(title: 'Texas Real State Solution'),
             '/image-lists': (context) => const ImageLists(),
             '/user-lists': (context) => const UsersList(),
+            '/movie-lists': (context) => MovieList(),
           },
         ));
   }
@@ -82,6 +84,23 @@ class _MyHomePageState extends State<MyHomePage> {
                           await Navigator.pushNamed(context, '/user-lists');
                         },
                         child: const Icon(Icons.arrow_forward_rounded),
+                      )
+                    ]),
+              ),
+              Container(
+                margin: const EdgeInsets.only(top: 10.0, left: 10.0),
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      const Text(
+                        'Go to Movies Page',
+                        style: TextStyle(color: Colors.black87, fontSize: 18),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          await Navigator.pushNamed(context, '/movie-lists');
+                        },
+                        child: const Icon(Icons.movie_creation),
                       )
                     ]),
               )
