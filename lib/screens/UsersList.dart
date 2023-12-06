@@ -33,17 +33,19 @@ class UsersList extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: users.length,
                     itemBuilder: (context, index) {
-                      return ListTile(
-                        trailing: Image.network(
-                          users[index].avatar,
-                          width: 50,
-                          height: 50,
-                          fit: BoxFit.cover,
-                        ),
-                        title: Text(users[index].first_name),
-                        subtitle: Text(users[index].last_name),
-                        dense: true,
-                      );
+                      return Hero(
+                          tag: 'tag-1',
+                          child: ListTile(
+                            trailing: Image.network(
+                              users[index].avatar,
+                              width: 50,
+                              height: 50,
+                              fit: BoxFit.cover,
+                            ),
+                            title: Text(users[index].first_name),
+                            subtitle: Text(users[index].last_name),
+                            dense: true,
+                          ));
                     },
                   );
                 } else if (state is UserErrorState) {

@@ -48,6 +48,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    Hero(
+      tag: 'dash',
+      child: Image.network(
+          'https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1'),
+    );
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -58,6 +63,11 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
+              // Hero(
+              //   tag: 'dash',
+              //   child: Image.network(
+              //       'https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1'),
+              // ),
               Container(
                 margin: const EdgeInsets.only(top: 10.0, left: 10.0),
                 child: const Row(
@@ -83,7 +93,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         onPressed: () async {
                           await Navigator.pushNamed(context, '/user-lists');
                         },
-                        child: const Icon(Icons.arrow_forward_rounded),
+                        child: const Hero(
+                            tag: 'tag-1',
+                            child: Icon(Icons.supervised_user_circle_sharp)),
                       )
                     ]),
               ),

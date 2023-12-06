@@ -28,6 +28,11 @@ class MovieList extends StatelessWidget {
           SliverGridDelegateWithMaxCrossAxisExtent(maxCrossAxisExtent: 200),
       itemBuilder: (BuildContext context, int index) {
         return ListTile(
+          // trailing: Hero(
+          //   tag: 'dash',
+          //   child: Image.network(
+          //       'https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?fit=476%2C280&ssl=1'),
+          // ),
           title: Text(snapshot.data?.results?[index].originalTitle ?? 'test'),
           subtitle: Image.network(
             'https://image.tmdb.org/t/p/w185${snapshot.data?.results?[index]?.posterPath}',
